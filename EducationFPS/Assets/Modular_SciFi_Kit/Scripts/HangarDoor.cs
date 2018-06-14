@@ -22,8 +22,14 @@ public class HangarDoor : MonoBehaviour
 
     void OnTriggerEnter(Collider other)
     {
-        if (!doorLocked) {
+        if (!doorLocked && other.tag == "Player") 
+        {
             StartCoroutine(OpenDoor());
+        }
+        else if(other.tag == "Arrow")
+        {
+            other.GetComponent<Rigidbody>().useGravity = true;
+            other.transform.Find("Collider").gameObject.SetActive(true);
         }
     }
 
