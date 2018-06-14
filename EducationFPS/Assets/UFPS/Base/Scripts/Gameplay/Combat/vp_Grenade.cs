@@ -32,6 +32,8 @@ public class vp_Grenade : MonoBehaviour
 	protected Rigidbody m_Rigidbody = null;
 	protected Transform m_Source = null;				// immediate cause of the damage
 	protected Transform m_OriginalSource = null;		// initial cause of the damage
+	[HideInInspector]
+	vp_Timer.Handle Timer = new vp_Timer.Handle();
 
 
 	/// <summary>
@@ -57,7 +59,7 @@ public class vp_Grenade : MonoBehaviour
 		vp_Timer.In(LifeTime, ()=>
 		{
 			transform.SendMessage("DieBySources", new Transform[] { m_Source, m_OriginalSource }, SendMessageOptions.DontRequireReceiver);
-		});
+		},Timer);
 
 		// apply force on spawn
 		if (RigidbodyForce != 0.0f)
@@ -66,6 +68,7 @@ public class vp_Grenade : MonoBehaviour
 			m_Rigidbody.AddTorque(Random.rotation.eulerAngles * RigidbodySpin);
 		
 	}
+
 
 
 	/// <summary>
@@ -81,5 +84,9 @@ public class vp_Grenade : MonoBehaviour
 		m_OriginalSource = source;
 	}
 
+	public vp_Timer.Handle getTimer()
+	{
+		return Timer;
+	}
 
 }
