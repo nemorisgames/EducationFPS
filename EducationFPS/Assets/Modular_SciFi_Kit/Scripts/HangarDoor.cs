@@ -35,6 +35,8 @@ public class HangarDoor : MonoBehaviour
 
     void OnTriggerExit(Collider other)
     {
+        if(other.tag != "Player")
+            return;
         if (!doorLocked)
         {
             doorCanClose = true;
