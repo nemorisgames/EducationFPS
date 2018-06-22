@@ -5,7 +5,8 @@ using UnityEngine.SceneManagement;
 
 public class QuestionPanel : MonoBehaviour {
 	public HangarDoor puertaAsociada;
-	public string enunciado;
+    HangarDoorNemoris puertaAsociadaNemoris;
+    public string enunciado;
 	public string [] preguntas;
 	public int respuestaCorrecta = 0;
 	UIToggle [] toggles;
@@ -19,12 +20,14 @@ public class QuestionPanel : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-		posicionPreguntas = transform.Find("posicionPreguntas");
+        puertaAsociadaNemoris = puertaAsociada.gameObject.GetComponent<HangarDoorNemoris>();
+        posicionPreguntas = transform.Find("posicionPreguntas");
 		enunciadoLabel = transform.Find("Enunciado").GetComponent<UILabel>();
 		cubierta = transform.Find("cubierta").gameObject;
 		//puerta cerrada por defecto
 		puertaAsociada.doorLocked = true;
-		if(!usarCubierta)
+        puertaAsociadaNemoris.LockDoors();
+        if (!usarCubierta)
 			cubierta.SetActive(false);
 		//trunca el arreglo de preguntas a 4 si hay mas
 		if(preguntas.Length > 4){
@@ -94,8 +97,8 @@ public class QuestionPanel : MonoBehaviour {
 	void EvaluarRespuesta(int respuesta){
 		if(respuesta == respuestaCorrecta){
 			Debug.Log("Correcto");
-			puertaAsociada.doorLocked = false;
-		}
+            puertaAsociadaNemoris.UnlockDoors();
+        }
 		else{
 			Debug.Log("Incorrecto");
 			
