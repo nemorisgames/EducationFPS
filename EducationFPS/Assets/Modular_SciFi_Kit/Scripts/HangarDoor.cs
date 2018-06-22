@@ -26,11 +26,11 @@ public class HangarDoor : MonoBehaviour
         {
             StartCoroutine(OpenDoor());
         }
-        else if(other.tag == "Arrow")
+        /*else if(other.tag == "Arrow")
         {
             other.GetComponent<Rigidbody>().useGravity = true;
             other.transform.Find("Collider").gameObject.SetActive(true);
-        }
+        }*/
     }
 
     void OnTriggerExit(Collider other)
