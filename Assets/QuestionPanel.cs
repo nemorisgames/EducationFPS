@@ -13,22 +13,19 @@ public class QuestionPanel : MonoBehaviour {
 	public GameObject alternativaPrefab;
 	Transform posicionPreguntas;
 	UILabel enunciadoLabel;
-	GameObject cubierta;
 	bool usingPanel = false;
 	int selectedToggle = 0;
-	public bool usarCubierta;
+
+    public TweenScale mainPanelTwScale;
 
 	// Use this for initialization
 	void Start () {
         puertaAsociadaNemoris = puertaAsociada.gameObject.GetComponent<HangarDoorNemoris>();
-        posicionPreguntas = transform.Find("posicionPreguntas");
-		enunciadoLabel = transform.Find("Enunciado").GetComponent<UILabel>();
-		cubierta = transform.Find("cubierta").gameObject;
+        posicionPreguntas = transform.Find("AnswersAnchor");
+		enunciadoLabel = transform.Find("Question").GetComponent<UILabel>();
 		//puerta cerrada por defecto
 		puertaAsociada.doorLocked = true;
         puertaAsociadaNemoris.LockDoors();
-        if (!usarCubierta)
-			cubierta.SetActive(false);
 		//trunca el arreglo de preguntas a 4 si hay mas
 		if(preguntas.Length > 4){
 			string [] aux = new string[4];
@@ -42,18 +39,22 @@ public class QuestionPanel : MonoBehaviour {
 		enunciadoLabel.text = (enunciado == "" ? "enunciado" : enunciado);
 		//crea lista de toggles correspondientes
 		toggles = new UIToggle[nPreguntas];
-		//construye las alternativas desde prefab, asigna toggles, escribe texto
-		for(int i = 0; i < nPreguntas; i++)
-		{
-			GameObject go = (GameObject)Instantiate(alternativaPrefab,posicionPreguntas.transform.position,Quaternion.identity,this.transform);
-			go.transform.localPosition = new Vector3(posicionPreguntas.localPosition.x,posicionPreguntas.localPosition.y - i*50f,posicionPreguntas.localPosition.z);
-			go.transform.localRotation = Quaternion.identity;
-
-			toggles[i] = go.GetComponent<UIToggle>();
-
-			toggles[i].transform.Find("Label").GetComponent<UILabel>().text = (preguntas == null || preguntas.Length == 0 ? "default" : preguntas[i]);
-		}
+        ConstructAlternatives();
 	}
+
+    //construye las alternativas desde prefab, asigna toggles, escribe texto
+    void ConstructAlternatives()
+    {
+        for (int i = 0; i < toggles.Length; i++)
+        {
+            GameObject go = (GameObject)Instantiate(alternativaPrefab, posicionPreguntas.transform.position, Quaternion.identity, this.transform);
+            go.transform.localPosition = new Vector3(posicionPreguntas.localPosition.x, posicionPreguntas.localPosition.y - i * 50f, posicionPreguntas.localPosition.z);
+            go.transform.localRotation = Quaternion.identity;
+
+            toggles[i] = go.GetComponent<UIToggle>();
+            toggles[i].transform.Find("Label").GetComponent<UILabel>().text = (preguntas == null || preguntas.Length == 0 ? "default" : preguntas[i]);
+        }
+    }
 	
 	// Update is called once per frame
 	void Update () {
@@ -84,15 +85,38 @@ public class QuestionPanel : MonoBehaviour {
 
 	public void EnablePanel(bool b){
 		usingPanel = b;
-		if(b){
-			if(usarCubierta) cubierta.SetActive(false);
-		}
+        if (b){
+            mainPanelTwScale.PlayForward();
+        }
 		else{
-			toggles[selectedToggle].value = false;
-			if(puertaAsociada.doorLocked && usarCubierta)
-				cubierta.SetActive(true);
-		}
+            toggles[selectedToggle].value = false;
+
+            enunciadoLabel.gameObject.SetActive(false);
+            foreach (UIToggle to in toggles)
+            {
+                to.gameObject.SetActive(false);
+            }
+            mainPanelTwScale.PlayReverse();
+        }
 	}
+
+    //sólo se ejecuta cuando la animacion va hacia adelante
+    public void ShowQuestionAndResponses()
+    {
+        if (mainPanelTwScale.direction == AnimationOrTween.Direction.Forward)
+        {
+            bool activate = !enunciadoLabel.gameObject.activeSelf;
+            enunciadoLabel.gameObject.SetActive(activate);
+            enunciadoLabel.text = enunciado;
+            enunciadoLabel.GetComponent<TypewriterEffect>().ResetToBeginning();
+            for (int i = 0; i < toggles.Length; i++)
+            {
+                toggles[i].gameObject.SetActive(activate);
+                toggles[i].transform.Find("Label").GetComponent<UILabel>().text = preguntas[i];
+                toggles[i].transform.Find("Label").GetComponent<TypewriterEffect>().ResetToBeginning();
+            }
+        }
+    }
 
 	void EvaluarRespuesta(int respuesta){
 		if(respuesta == respuestaCorrecta){
