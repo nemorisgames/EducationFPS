@@ -18,17 +18,16 @@ public class PanelHistoria : MonoBehaviour {
 	public Pantalla [] pantallas;
 	public int index;
 	bool visible;
-	GameObject player;
+	TweenAlpha imageTween;
 
 	void Awake(){
 		panel = GetComponent<UIPanel>();
 		container = transform.Find("Container").GetComponent<UIWidget>();
 		imageSprite = container.transform.Find("imagen").GetComponent<UISprite>();
 		textLabel = container.transform.Find("texto").GetComponent<UILabel>();
-		player = GameObject.FindGameObjectWithTag("Player");
+		imageTween = imageSprite.GetComponent<TweenAlpha>();
 	}
 	void Start () {
-		player.SetActive(false);
 		panel.alpha = 1;
 		index = -1;
 		NextScreen();
@@ -38,20 +37,33 @@ public class PanelHistoria : MonoBehaviour {
 	}
 
 	public void NextScreen(){
+		if(changingScreen)
+			return;
 		index++;
 		if(index >= pantallas.Length){
 			if(index == pantallas.Length)
-				player.SetActive(true);
-				GetComponent<TweenAlpha>().PlayForward();
+				Debug.Log("end");
+				//GetComponent<TweenAlpha>().PlayForward();
 		}
 		else{
-			imageSprite.spriteName = pantallas[index].img;
-			textLabel.text = pantallas[index].txt;
+			StartCoroutine(changeImage(index));
 		}
 	}
 
 	void Update(){
 		if(visible && Input.GetKeyDown(KeyCode.Q))
 			NextScreen();
+	}
+
+	bool changingScreen = false;
+	IEnumerator changeImage(int index){
+		changingScreen = true;
+		imageTween.PlayForward();
+		yield return new WaitForSeconds(0.5f);
+		imageSprite.spriteName = pantallas[index].img;
+		textLabel.text = pantallas[index].txt;
+		imageTween.PlayReverse();
+		yield return new WaitForSeconds(0.5f);
+		changingScreen = false;
 	}
 }
