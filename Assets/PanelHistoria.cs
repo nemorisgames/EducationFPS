@@ -19,6 +19,7 @@ public class PanelHistoria : MonoBehaviour {
 	public int index;
 	bool visible;
 	TweenAlpha imageTween;
+	TypewriterEffect typeWriter;
 
 	void Awake(){
 		panel = GetComponent<UIPanel>();
@@ -26,6 +27,7 @@ public class PanelHistoria : MonoBehaviour {
 		imageSprite = container.transform.Find("imagen").GetComponent<UISprite>();
 		textLabel = container.transform.Find("texto").GetComponent<UILabel>();
 		imageTween = imageSprite.GetComponent<TweenAlpha>();
+		typeWriter = textLabel.GetComponent<TypewriterEffect>();
 	}
 	void Start () {
 		panel.alpha = 1;
@@ -37,7 +39,7 @@ public class PanelHistoria : MonoBehaviour {
 	}
 
 	public void NextScreen(){
-		if(changingScreen)
+		if(changingScreen || writingText)
 			return;
 		index++;
 		if(index >= pantallas.Length){
@@ -56,14 +58,21 @@ public class PanelHistoria : MonoBehaviour {
 	}
 
 	bool changingScreen = false;
+	bool writingText = false;
 	IEnumerator changeImage(int index){
 		changingScreen = true;
 		imageTween.PlayForward();
 		yield return new WaitForSeconds(0.5f);
 		imageSprite.spriteName = pantallas[index].img;
 		textLabel.text = pantallas[index].txt;
+		typeWriter.ResetToBeginning();
 		imageTween.PlayReverse();
 		yield return new WaitForSeconds(0.5f);
 		changingScreen = false;
 	}
+
+	public void TextDisplayed(){
+		writingText = false;
+	}
+
 }
