@@ -21,6 +21,8 @@ public class QuestionPanel : MonoBehaviour {
 	private int dificultadAlAzar;
 	public int idPregunta;
 
+    public PlayMakerFSM fsm;
+
     void Awake () {
         puertaAsociadaNemoris = puertaAsociada.gameObject.GetComponent<HangarDoorNemoris>();
         posicionPreguntas = transform.Find("AnswersAnchor");
@@ -75,9 +77,10 @@ public class QuestionPanel : MonoBehaviour {
 			if(Input.GetKeyDown(KeyCode.Alpha1) && toggles.Length > 0){
 				toggles[0].value = true;
 				selectedToggle = 0;
-                
-			}
-			if(Input.GetKeyDown(KeyCode.Alpha2) && toggles.Length > 1){
+                fsm.SendEvent("IncorrectAnswer");
+
+            }
+            if (Input.GetKeyDown(KeyCode.Alpha2) && toggles.Length > 1){
 				toggles[1].value = true;
 				selectedToggle = 1;
 			}
