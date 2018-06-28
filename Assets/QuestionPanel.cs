@@ -53,8 +53,8 @@ public class QuestionPanel : MonoBehaviour {
         for (int i = 0; i < toggles.Length; i++)
         {
             GameObject go = (GameObject)Instantiate(alternativaPrefab, posicionPreguntas.transform.position, Quaternion.identity, this.transform);
-            go.transform.localPosition = new Vector3(posicionPreguntas.localPosition.x, posicionPreguntas.localPosition.y - i * 50f, posicionPreguntas.localPosition.z);
-            go.transform.localRotation = Quaternion.identity;
+            go.transform.localRotation = posicionPreguntas.transform.localRotation;
+            go.transform.position = posicionPreguntas.position - posicionPreguntas.up * i * 0.12f;
 
             toggles[i] = go.GetComponent<UIToggle>();
             toggles[i].transform.Find("Label").GetComponent<UILabel>().text = (pregunta.alternativas == null || pregunta.alternativas.Length == 0 ? "default" : pregunta.alternativas[i]);
@@ -64,26 +64,26 @@ public class QuestionPanel : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 		if(usingPanel && puertaAsociada.doorLocked){
-			if(Input.GetKeyDown("1") && toggles.Length > 0){
+			if(Input.GetKeyDown(KeyCode.Alpha1) && toggles.Length > 0){
 				toggles[0].value = true;
 				selectedToggle = 0;
 			}
-			if(Input.GetKeyDown("2") && toggles.Length > 1){
+			if(Input.GetKeyDown(KeyCode.Alpha2) && toggles.Length > 1){
 				toggles[1].value = true;
 				selectedToggle = 1;
 			}
 				
-			if(Input.GetKeyDown("3") && toggles.Length > 2){
+			if(Input.GetKeyDown(KeyCode.Alpha3) && toggles.Length > 2){
 				toggles[2].value = true;
 				selectedToggle = 2;
 			}
 
-			if(Input.GetKeyDown("4") && toggles.Length > 3){
+			if(Input.GetKeyDown(KeyCode.Alpha4) && toggles.Length > 3){
 				toggles[3].value = true;
 				selectedToggle = 3;
 			}
 
-			if(Input.GetKeyDown("q"))
+			if(Input.GetKeyDown(KeyCode.Return) || Input.GetKeyDown(KeyCode.Space))
 				EvaluarRespuesta(selectedToggle);
 		}
 	}

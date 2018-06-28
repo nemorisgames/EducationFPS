@@ -22,8 +22,10 @@ public class QuestionManager : MonoBehaviour {
 	}
 
 	public Pregunta getPregunta(int index = -1){
-		//si no quedan preguntas en lista, recarga
-		if(preguntasRestantes.Count == 0)
+        if(preguntasRestantes == null || preguntasRestantes.Count <= 0)
+            preguntasRestantes = preguntas.ToList();
+        //si no quedan preguntas en lista, recarga
+        if (preguntasRestantes.Count == 0)
 			preguntasRestantes = preguntas.ToList();
 		//Default: regresa pregunta al azar de cualquier dificultad
 		if(index == -1)
