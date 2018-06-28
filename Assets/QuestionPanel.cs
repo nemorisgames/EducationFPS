@@ -18,18 +18,26 @@ public class QuestionPanel : MonoBehaviour {
 	int selectedToggle = 0;
     public TweenScale mainPanelTwScale;
 	public bool preguntaAlAzar = true;
-	public int dificultadAlAzar;
+	private int dificultadAlAzar;
+	public int idPregunta;
 
-    // Use this for initialization
-    void Start () {
+    void Awake () {
         puertaAsociadaNemoris = puertaAsociada.gameObject.GetComponent<HangarDoorNemoris>();
         posicionPreguntas = transform.Find("AnswersAnchor");
 		enunciadoLabel = transform.Find("Question").GetComponent<UILabel>();
 		//puerta cerrada por defecto
 		puertaAsociada.doorLocked = true;
         puertaAsociadaNemoris.LockDoors();
+		
+	}
+
+	public void CargarPanel(){
 		//si se espera una pregunta al azar o algun parametro clave esta vacio, obtiene pregunta al azar
-		if(preguntaAlAzar || pregunta.enunciado == "" || pregunta.alternativas == null)
+		if(preguntaAlAzar)
+			pregunta = GameObject.FindObjectOfType<QuestionManager>().getPregunta();
+		else if(!preguntaAlAzar)
+			pregunta = GameObject.FindObjectOfType<QuestionManager>().getPreguntaId(idPregunta);
+		else
 			pregunta = GameObject.FindObjectOfType<QuestionManager>().getPregunta(dificultadAlAzar);
 		//trunca el arreglo de preguntas a 4 si hay mas
 		if(pregunta.alternativas.Length > 4){
@@ -67,7 +75,7 @@ public class QuestionPanel : MonoBehaviour {
 			if(Input.GetKeyDown(KeyCode.Alpha1) && toggles.Length > 0){
 				toggles[0].value = true;
 				selectedToggle = 0;
-                PlayMaker.ConditionalExpression.
+                
 			}
 			if(Input.GetKeyDown(KeyCode.Alpha2) && toggles.Length > 1){
 				toggles[1].value = true;
