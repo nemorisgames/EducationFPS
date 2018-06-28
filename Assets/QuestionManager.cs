@@ -22,6 +22,7 @@ public class QuestionManager : MonoBehaviour {
 	public Pregunta [] preguntas;
 	[Header("Paneles")]
 	public Panel [] paneles;
+	public float currentScore;
 	List<Pregunta> preguntasRestantes;
 
 	void Awake(){
