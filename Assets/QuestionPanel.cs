@@ -20,8 +20,8 @@ public class QuestionPanel : MonoBehaviour {
 	public bool preguntaAlAzar = true;
 	public int dificultadAlAzar;
 
-	// Use this for initialization
-	void Start () {
+    // Use this for initialization
+    void Start () {
         puertaAsociadaNemoris = puertaAsociada.gameObject.GetComponent<HangarDoorNemoris>();
         posicionPreguntas = transform.Find("AnswersAnchor");
 		enunciadoLabel = transform.Find("Question").GetComponent<UILabel>();
@@ -67,6 +67,7 @@ public class QuestionPanel : MonoBehaviour {
 			if(Input.GetKeyDown(KeyCode.Alpha1) && toggles.Length > 0){
 				toggles[0].value = true;
 				selectedToggle = 0;
+                PlayMaker.ConditionalExpression.
 			}
 			if(Input.GetKeyDown(KeyCode.Alpha2) && toggles.Length > 1){
 				toggles[1].value = true;
