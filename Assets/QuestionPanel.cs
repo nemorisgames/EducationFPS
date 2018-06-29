@@ -20,7 +20,7 @@ public class QuestionPanel : MonoBehaviour {
 	public bool preguntaAlAzar = true;
 	private int dificultadAlAzar;
 	public int idPregunta;
-
+	PanelResumen resumen;
     public PlayMakerFSM fsm;
 
     void Awake () {
@@ -30,7 +30,7 @@ public class QuestionPanel : MonoBehaviour {
 		//puerta cerrada por defecto
 		puertaAsociada.doorLocked = true;
         puertaAsociadaNemoris.LockDoors();
-		
+		resumen = FindObjectOfType<PanelResumen>();
 	}
 
 	public void CargarPanel(){
@@ -73,11 +73,10 @@ public class QuestionPanel : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		if(usingPanel && puertaAsociada.doorLocked){
+		if(usingPanel && puertaAsociadaNemoris.doorLocked){
 			if(Input.GetKeyDown(KeyCode.Alpha1) && toggles.Length > 0){
 				toggles[0].value = true;
 				selectedToggle = 0;
-                fsm.SendEvent("IncorrectAnswer");
 
             }
             if (Input.GetKeyDown(KeyCode.Alpha2) && toggles.Length > 1){
@@ -139,10 +138,12 @@ public class QuestionPanel : MonoBehaviour {
 		if(respuesta == pregunta.respuestaCorrecta){
 			Debug.Log("Correcto");
             puertaAsociadaNemoris.UnlockDoors();
+			resumen.Respuesta(true);
         }
 		else{
 			Debug.Log("Incorrecto");
-			
+			resumen.Respuesta(false);
+			fsm.SendEvent("IncorrectAnswer");
 		}
 	}
 }

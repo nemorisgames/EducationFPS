@@ -3,14 +3,15 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class Teleporter : MonoBehaviour {
-	public List<TeleporterGuard> guards;
+	public List<EnemyDestroyed> guards;
 	bool active = false;
 	public PanelResumen panelResumen;
 
 	// Use this for initialization
 	void Awake () {
-		foreach(TeleporterGuard g in guards)
-			g.teleporter = this;
+		if(guards != null && guards.Count > 0)
+			foreach(EnemyDestroyed g in guards)
+				g.teleporter = this;
 		if(panelResumen == null)
 			panelResumen = GameObject.FindObjectOfType<PanelResumen>();
 	}
