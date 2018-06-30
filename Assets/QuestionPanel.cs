@@ -22,6 +22,9 @@ public class QuestionPanel : MonoBehaviour {
 	public int idPregunta;
 	PanelResumen resumen;
     public PlayMakerFSM fsm;
+    bool correctAnswerSelected = false;
+    public GameObject correctMessage;
+    public GameObject incorrectMessage;
 
     void Awake () {
         puertaAsociadaNemoris = puertaAsociada.gameObject.GetComponent<HangarDoorNemoris>();
@@ -73,6 +76,8 @@ public class QuestionPanel : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+        if (correctAnswerSelected) return;
+
 		if(usingPanel && puertaAsociadaNemoris.doorLocked){
 			if(Input.GetKeyDown(KeyCode.Alpha1) && toggles.Length > 0){
 				toggles[0].value = true;
@@ -95,7 +100,7 @@ public class QuestionPanel : MonoBehaviour {
 			}
 
 			if(Input.GetKeyDown(KeyCode.Return) || Input.GetKeyDown(KeyCode.Space))
-				EvaluarRespuesta(selectedToggle);
+				StartCoroutine(EvaluarRespuesta(selectedToggle));
 		}
 	}
 
@@ -106,7 +111,6 @@ public class QuestionPanel : MonoBehaviour {
         }
 		else{
             toggles[selectedToggle].value = false;
-
             enunciadoLabel.gameObject.SetActive(false);
             foreach (UIToggle to in toggles)
             {
@@ -121,7 +125,7 @@ public class QuestionPanel : MonoBehaviour {
     {
         if (mainPanelTwScale.direction == AnimationOrTween.Direction.Forward)
         {
-            bool activate = !enunciadoLabel.gameObject.activeSelf;
+            bool activate = !enunciadoLabel.gameObject.activeSelf && !correctAnswerSelected;
             enunciadoLabel.gameObject.SetActive(activate);
             enunciadoLabel.text = pregunta.enunciado;
             enunciadoLabel.GetComponent<TypewriterEffect>().ResetToBeginning();
@@ -134,16 +138,36 @@ public class QuestionPanel : MonoBehaviour {
         }
     }
 
-	void EvaluarRespuesta(int respuesta){
-		if(respuesta == pregunta.respuestaCorrecta){
-			Debug.Log("Correcto");
+	IEnumerator EvaluarRespuesta(int respuesta){
+        if (respuesta == pregunta.respuestaCorrecta)
+        {
+            correctAnswerSelected = true;
+            correctMessage.SetActive(true);
+            Debug.Log("Correcto");
             puertaAsociadaNemoris.UnlockDoors();
-			resumen.Respuesta(true);
+            enunciadoLabel.gameObject.SetActive(false);
+            resumen.Respuesta(true);
+            showAlternatives(false);
         }
-		else{
-			Debug.Log("Incorrecto");
-			resumen.Respuesta(false);
-			fsm.SendEvent("IncorrectAnswer");
-		}
+        else
+        {
+            Debug.Log("Incorrecto");
+            resumen.Respuesta(false);
+            fsm.SendEvent("IncorrectAnswer");
+            enunciadoLabel.gameObject.SetActive(false);
+            showAlternatives(false);
+            incorrectMessage.SetActive(true);
+            yield return new WaitForSeconds(2f);
+            showAlternatives(true);
+            incorrectMessage.SetActive(false);
+        }
 	}
+
+    void showAlternatives(bool show)
+    {
+        for (int i = 0; i < toggles.Length; i++)
+        {
+            toggles[i].gameObject.SetActive(show);
+        }
+    }
 }

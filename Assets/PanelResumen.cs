@@ -12,9 +12,10 @@ public class PanelResumen : MonoBehaviour {
 	Vector3 initialPos;
 	Quaternion initialRot;
 	GameObject player;
+    public PlayMakerFSM fsm;
 
-	// Use this for initialization
-	void Awake () {
+    // Use this for initialization
+    void Awake () {
 		tiempoLabel = transform.Find("tiempo").GetComponent<UILabel>();
 		puntajeLabel = transform.Find("puntaje").GetComponent<UILabel>();
 		rCorrectasLabel = transform.Find("rCorrectas").GetComponent<UILabel>();
@@ -58,11 +59,23 @@ public class PanelResumen : MonoBehaviour {
 		rCorrectasLabel.text = rCorrectas.ToString();
 		rEquivocadasLabel.text = rEquivocadas.ToString();
 		GetComponent<TweenAlpha>().PlayForward();
-	}
+
+        fsm.SendEvent("EndLevel");
+    }
 
 	public string FormatoTiempo(float tiempo){
 		return ((Mathf.FloorToInt(tiempo/60f)).ToString()+":"+(tiempo%60f < 10 ? "0" : "")+(tiempo%60f).ToString());
 	}
+
+    public void exitGame()
+    {
+        Application.Quit();
+    }
+
+    public void restart()
+    {
+        Application.LoadLevel("Exterior");
+    }
 
 	public void ReturnPlayer(){
 		player.transform.position = initialPos;

@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEditor;
-
+/*
 [CustomEditor(typeof(QuestionManager))]
 class DecalMeshHelperEditor : Editor {
 	public override void OnInspectorGUI() {
@@ -11,4 +11,4 @@ class DecalMeshHelperEditor : Editor {
 		if(GUILayout.Button("Cargar preguntas desde CSV"))
 		qm.CargarPreguntas();
 	}
-}
+}*/

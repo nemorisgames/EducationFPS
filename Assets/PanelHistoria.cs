@@ -45,6 +45,7 @@ public class PanelHistoria : MonoBehaviour {
 		if(index >= pantallas.Length){
 			if(index == pantallas.Length)
 				Debug.Log("end");
+            Application.LoadLevel("Exterior");
 				//GetComponent<TweenAlpha>().PlayForward();
 		}
 		else{
