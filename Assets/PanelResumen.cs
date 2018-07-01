@@ -16,11 +16,11 @@ public class PanelResumen : MonoBehaviour {
 
     // Use this for initialization
     void Awake () {
-		tiempoLabel = transform.Find("tiempo").GetComponent<UILabel>();
-		puntajeLabel = transform.Find("puntaje").GetComponent<UILabel>();
-		rCorrectasLabel = transform.Find("rCorrectas").GetComponent<UILabel>();
-		rEquivocadasLabel = transform.Find("rEquivocadas").GetComponent<UILabel>();
-		totalLabel = transform.Find("total").GetComponent<UILabel>();
+		tiempoLabel = transform.Find("background/tiempo").GetComponent<UILabel>();
+		puntajeLabel = transform.Find("background/puntaje").GetComponent<UILabel>();
+		rCorrectasLabel = transform.Find("background/rCorrectas").GetComponent<UILabel>();
+		rEquivocadasLabel = transform.Find("background/rEquivocadas").GetComponent<UILabel>();
+		totalLabel = transform.Find("background/total").GetComponent<UILabel>();
 		GetComponent<UIPanel>().alpha = 0;
 		player = GameObject.FindGameObjectWithTag("Player");
 		initialPos = player.transform.position;

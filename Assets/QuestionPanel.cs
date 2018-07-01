@@ -14,7 +14,7 @@ public class QuestionPanel : MonoBehaviour {
 	public GameObject alternativaPrefab;
 	Transform posicionPreguntas;
 	UILabel enunciadoLabel;
-	bool usingPanel = false;
+	public bool usingPanel = false;
 	int selectedToggle = 0;
     public TweenScale mainPanelTwScale;
 	public bool preguntaAlAzar = true;

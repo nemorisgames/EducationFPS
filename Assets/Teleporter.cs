@@ -7,8 +7,11 @@ public class Teleporter : MonoBehaviour {
 	bool active = false;
 	public PanelResumen panelResumen;
 
-	// Use this for initialization
-	void Awake () {
+    public GameObject[] objectsToActivate;
+    public GameObject[] objectsToDeactivate;
+
+    // Use this for initialization
+    void Awake () {
 		if(guards != null && guards.Count > 0)
 			foreach(EnemyDestroyed g in guards)
 				g.teleporter = this;
@@ -17,15 +20,25 @@ public class Teleporter : MonoBehaviour {
 	}
 
 	public void CheckActive(){
-		if(guards.Count == 0)
-			active = true;
+        if (guards.Count == 0)
+        {
+            active = true;
+            foreach (GameObject g in objectsToActivate)
+            {
+                g.SetActive(true);
+            }
+            foreach (GameObject g in objectsToDeactivate)
+            {
+                g.SetActive(false);
+            }
+        }
 	}
 
 	void OnTriggerStay(Collider c){
 		if(c.tag == "Player" && active){
 			//do stuff
 			if(panelResumen != null) panelResumen.ObtenerTotal();
-			active = false;
+            active = false;
 		}
 		else
 			return;
