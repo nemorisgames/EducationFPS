@@ -7,8 +7,8 @@ public class HangarDoorNemoris : MonoBehaviour
     public bool doorLocked;
     public GameObject doorFrame;
 
-    bool doorCanClose = false;
-    bool doorCanOpen = true;
+    public bool doorCanClose = false;
+    public bool doorCanOpen = true;
 
     private void Start()
     {
@@ -55,10 +55,17 @@ public class HangarDoorNemoris : MonoBehaviour
     {
         if(other.tag != "Player")
             return;
-        if (!doorLocked)
+        if (!doorLocked && !doorCanOpen)
         {
             doorCanClose = true;
         }
+    }
+
+    void OnTriggerStay(Collider other){
+        if(other.tag != "Player" || doorLocked)
+            return;
+        if(doorCanOpen)
+            StartCoroutine(OpenDoor());
     }
 
     IEnumerator OpenDoor()

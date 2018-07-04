@@ -25,7 +25,7 @@ public class QuestionManager : MonoBehaviour {
 	public float currentScore;
 	List<Pregunta> preguntasRestantes;
 
-	void Awake(){
+	void Start(){
 		foreach(Panel p in paneles){
 			if(p.panel == null)
 				return;
@@ -33,9 +33,6 @@ public class QuestionManager : MonoBehaviour {
 			p.panel.idPregunta = p.idPregunta;
 			p.panel.CargarPanel();
 		}
-	}
-
-	void Start(){
 		preguntasRestantes = preguntas.ToList();
 	}
 

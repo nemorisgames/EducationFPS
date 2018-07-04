@@ -39,14 +39,18 @@ public class PanelHistoria : MonoBehaviour {
 	}
 
 	public void NextScreen(){
-		if(changingScreen || writingText)
+		if(changingScreen)
 			return;
+		if(writingText){
+			typeWriter.Finish();
+			return;
+		}
 		index++;
 		if(index >= pantallas.Length){
-			if(index == pantallas.Length)
+			if(index == pantallas.Length){
 				Debug.Log("end");
-            Application.LoadLevel("Exterior");
-				//GetComponent<TweenAlpha>().PlayForward();
+           		Application.LoadLevel("Exterior");
+			}
 		}
 		else{
 			StartCoroutine(changeImage(index));
@@ -58,8 +62,8 @@ public class PanelHistoria : MonoBehaviour {
 			NextScreen();
 	}
 
-	bool changingScreen = false;
-	bool writingText = false;
+	public bool changingScreen = false;
+	public bool writingText = false;
 	IEnumerator changeImage(int index){
 		changingScreen = true;
 		imageTween.PlayForward();
@@ -67,6 +71,7 @@ public class PanelHistoria : MonoBehaviour {
 		imageSprite.spriteName = pantallas[index].img;
 		textLabel.text = pantallas[index].txt;
 		typeWriter.ResetToBeginning();
+		writingText = true;
 		imageTween.PlayReverse();
 		yield return new WaitForSeconds(0.5f);
 		changingScreen = false;

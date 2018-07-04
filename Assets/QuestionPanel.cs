@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
+[RequireComponent(typeof(AudioSource))]
 public class QuestionPanel : MonoBehaviour {
 	public HangarDoor puertaAsociada;
     HangarDoorNemoris puertaAsociadaNemoris;
@@ -25,6 +26,9 @@ public class QuestionPanel : MonoBehaviour {
     bool correctAnswerSelected = false;
     public GameObject correctMessage;
     public GameObject incorrectMessage;
+    public AudioClip [] audioClips;
+    AudioSource audioSource;
+    EventDelegate toggleSelect;
 
     void Awake () {
         puertaAsociadaNemoris = puertaAsociada.gameObject.GetComponent<HangarDoorNemoris>();
@@ -34,9 +38,12 @@ public class QuestionPanel : MonoBehaviour {
 		puertaAsociada.doorLocked = true;
         puertaAsociadaNemoris.LockDoors();
 		resumen = FindObjectOfType<PanelResumen>();
+        audioSource = GetComponent<AudioSource>();
+        audioSource.loop = false;
 	}
 
 	public void CargarPanel(){
+        //Debug.Log(gameObject.name);
 		//si se espera una pregunta al azar o algun parametro clave esta vacio, obtiene pregunta al azar
 		if(preguntaAlAzar)
 			pregunta = GameObject.FindObjectOfType<QuestionManager>().getPregunta();
@@ -54,7 +61,7 @@ public class QuestionPanel : MonoBehaviour {
 		//rellena con 3 preguntas si no hay ninguna asignada
 		int nPreguntas = (pregunta.alternativas == null || pregunta.alternativas.Length == 0 ? 3 : pregunta.alternativas.Length);
 		//escribe enunciado
-		enunciadoLabel.text = (pregunta.enunciado == "" ? "enunciado" : pregunta.enunciado);
+		if(enunciadoLabel != null) enunciadoLabel.text = (pregunta.enunciado == "" ? "enunciado" : pregunta.enunciado);
 		//crea lista de toggles correspondientes
 		toggles = new UIToggle[nPreguntas];
         ConstructAlternatives();
@@ -70,6 +77,7 @@ public class QuestionPanel : MonoBehaviour {
             go.transform.position = posicionPreguntas.position - posicionPreguntas.up * i * 0.12f;
 
             toggles[i] = go.GetComponent<UIToggle>();
+            EventDelegate.Add(toggles[i].onChange,() => PlayAudioSelect());
             toggles[i].transform.Find("Label").GetComponent<UILabel>().text = (pregunta.alternativas == null || pregunta.alternativas.Length == 0 ? "default" : pregunta.alternativas[i]);
         }
     }
@@ -139,6 +147,7 @@ public class QuestionPanel : MonoBehaviour {
     }
 
 	IEnumerator EvaluarRespuesta(int respuesta){
+        PlayAudioAnswer(respuesta == pregunta.respuestaCorrecta);
         if (respuesta == pregunta.respuestaCorrecta)
         {
             correctAnswerSelected = true;
@@ -169,5 +178,17 @@ public class QuestionPanel : MonoBehaviour {
         {
             toggles[i].gameObject.SetActive(show);
         }
+    }
+
+    void PlayAudioSelect(){
+        audioSource.Stop();
+        audioSource.clip = audioClips[0];
+        audioSource.Play();
+    }
+
+    void PlayAudioAnswer(bool b){
+        audioSource.Stop();
+        audioSource.clip = (b ? audioClips[1] : audioClips[2]);
+        audioSource.Play();
     }
 }
