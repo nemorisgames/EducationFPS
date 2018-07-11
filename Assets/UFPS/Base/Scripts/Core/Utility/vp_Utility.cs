@@ -251,7 +251,6 @@ public static class vp_Utility
 	/// </summary>
 	public static bool LockCursor
 	{
-
 		// compile only for unity 5+
 		#if (!(UNITY_4_6 || UNITY_4_5 || UNITY_4_3 || UNITY_4_2 || UNITY_4_1 || UNITY_4_0 || UNITY_3_5))
 		get
@@ -267,7 +266,7 @@ public static class vp_Utility
 				Cursor.visible = value ? InvisibleCursor : VisibleCursor;
 			#else
 				// running in a build so toggling visibility should work fine
-				Cursor.visible = !value;
+				Cursor.visible = false;
 			#endif
 			Cursor.lockState = (value ? CursorLockMode.Locked : CursorLockMode.None);
 		}
