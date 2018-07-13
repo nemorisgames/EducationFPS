@@ -19,7 +19,7 @@ public class StickArrow : MonoBehaviour {
 	private void OnTriggerEnter(Collider other)
 	{
 		if(!collided){
-			Debug.Log(other.transform.parent+"/"+other.transform);
+			//Debug.Log(other.transform.parent+"/"+other.transform);
 			if(other.tag == "Arrow" || other.tag == "Player"){
 				Physics.IgnoreCollision(other,GetComponent<Collider>(),true);
 				return;

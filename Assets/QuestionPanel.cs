@@ -47,10 +47,8 @@ public class QuestionPanel : MonoBehaviour {
 		//si se espera una pregunta al azar o algun parametro clave esta vacio, obtiene pregunta al azar
 		if(preguntaAlAzar)
 			pregunta = GameObject.FindObjectOfType<QuestionManager>().getPregunta();
-		else if(!preguntaAlAzar)
-			pregunta = GameObject.FindObjectOfType<QuestionManager>().getPreguntaId(idPregunta);
 		else
-			pregunta = GameObject.FindObjectOfType<QuestionManager>().getPregunta(dificultadAlAzar);
+			pregunta = GameObject.FindObjectOfType<QuestionManager>().getPreguntaId(idPregunta);
 		//trunca el arreglo de preguntas a 4 si hay mas
 		if(pregunta.alternativas.Length > 4){
 			string [] aux = new string[4];
