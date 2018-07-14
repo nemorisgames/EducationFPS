@@ -38,9 +38,33 @@ public class QuestionManager : MonoBehaviour {
 		}
 	}
 
+<<<<<<< HEAD
+	public Pregunta getPregunta(int index = -1){
+        if(preguntasRestantes == null || preguntasRestantes.Count <= 0)
+            preguntasRestantes = preguntas.ToList();
+        //si no quedan preguntas en lista, recarga
+        if (preguntasRestantes.Count == 0)
+			preguntasRestantes = preguntas.ToList();
+        //Default: regresa pregunta al azar de cualquier dificultad
+        if (index == -1)
+        {
+            index = Random.Range(0, preguntasRestantes.Count);
+        }
+		//No default: regresa pregunta al azar de la dificultad indicada
+		/*else{
+			List<Pregunta> auxPreguntas = new List<Pregunta>();
+			foreach(Pregunta p in preguntasRestantes)
+				if(p.dificultad == index)
+					auxPreguntas.Add(p);
+			//Indice: al azar desde la nueva lista de preguntas restantes
+			Debug.Log(auxPreguntas.Count);
+			index = Random.Range(0,auxPreguntas.Count);
+		}*/
+=======
 	public Pregunta getPregunta(){
 		int index = random.Next(0,preguntasRestantes.Count);
 		Debug.Log(index+" | "+preguntasRestantes.Count);
+>>>>>>> b34080cb7c309ce1a876dd0eb2df60e9d0bd80ff
 		//genera copia de respuesta a entregar, la borra del pool de preguntas restantes, y la retorna
 		Pregunta aux = preguntasRestantes[index];
 		preguntasRestantes.RemoveAt(index);

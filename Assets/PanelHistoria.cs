@@ -8,6 +8,7 @@ public class PanelHistoria : MonoBehaviour {
 	UISprite imageSprite;
 	UILabel textLabel;
 	UIWidget container;
+    public GameObject cargando;
 
 	[System.Serializable]
 	public struct Pantalla{
@@ -48,7 +49,8 @@ public class PanelHistoria : MonoBehaviour {
 		index++;
 		if(index >= pantallas.Length){
 			if(index == pantallas.Length){
-				Debug.Log("end");
+                cargando.SetActive(true);
+                Debug.Log("end");
            		Application.LoadLevel("Exterior");
 			}
 		}

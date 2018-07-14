@@ -1,0 +1,143 @@
+fileFormatVersion: 2
+guid: b0ef246bd30ee804692c97801875582b
+ModelImporter:
+  serializedVersion: 22
+  fileIDToRecycleName:
+    100000: BallTransform
+    100002: BaseTransform
+    100004: FlyingTransform
+    100006: FlyingTransform1
+    100008: FlyingTransform2
+    100010: HandlesTransform
+    100012: HandlesTransform2
+    100014: HandlesTransform3
+    100016: RailTransform
+    100018: RailTransform1
+    100020: //RootNode
+    400000: BallTransform
+    400002: BaseTransform
+    400004: FlyingTransform
+    400006: FlyingTransform1
+    400008: FlyingTransform2
+    400010: HandlesTransform
+    400012: HandlesTransform2
+    400014: HandlesTransform3
+    400016: RailTransform
+    400018: RailTransform1
+    400020: //RootNode
+    2100000: BaseMaterial
+    2100002: HandlesMaterial
+    2100004: railMaterial
+    2100006: BallMaterial
+    2100008: FlyingMaterial
+    2300000: BallTransform
+    2300002: BaseTransform
+    2300004: FlyingTransform
+    2300006: FlyingTransform1
+    2300008: FlyingTransform2
+    2300010: HandlesTransform
+    2300012: HandlesTransform2
+    2300014: HandlesTransform3
+    2300016: RailTransform
+    2300018: RailTransform1
+    3300000: BallTransform
+    3300002: BaseTransform
+    3300004: FlyingTransform
+    3300006: FlyingTransform1
+    3300008: FlyingTransform2
+    3300010: HandlesTransform
+    3300012: HandlesTransform2
+    3300014: HandlesTransform3
+    3300016: RailTransform
+    3300018: RailTransform1
+    4300000: BaseTransform
+    4300002: HandlesTransform
+    4300004: HandlesTransform2
+    4300006: HandlesTransform3
+    4300008: RailTransform
+    4300010: RailTransform1
+    4300012: BallTransform
+    4300014: FlyingTransform
+    4300016: FlyingTransform1
+    4300018: FlyingTransform2
+  externalObjects: {}
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+    materialLocation: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    rigImportErrors: 
+    rigImportWarnings: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    importAnimatedCustomProperties: 0
+    importConstraints: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    extraUserProperties: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 100
+    meshCompression: 0
+    addColliders: 0
+    importVisibility: 1
+    importBlendShapes: 1
+    importCameras: 1
+    importLights: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    preserveHierarchy: 0
+    indexFormat: 0
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+    normalCalculationMode: 4
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    serializedVersion: 2
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    rootMotionBoneRotation: {x: 0, y: 0, z: 0, w: 1}
+    hasTranslationDoF: 0
+    hasExtraRoot: 0
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 0
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

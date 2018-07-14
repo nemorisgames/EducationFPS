@@ -1,9 +1,8 @@
-//formato:
-// enunciado | alternativa 1; alternativa 2; alternativa 3; alternativa 4 | respuesta correcta (numero, primera respuesta es 0)
-// ejemplo:
-// 1 + 1? | 0; 1; 2; 3 | 2
+//formato:                                                                                          
+// enunciado | alternativa 1; alternativa 2; alternativa 3; alternativa 4 | respuesta correcta (nume
+// ejemplo:                                                                                         
+// 1 + 1? | 0; 1; 2; 3 | 2                                                                          
 
-1 + 1? | 0; 1; 2; 3 | 2
-1 + 2? | 2; 3; 4; 5 | 1
-
-
+1 + 1? | 0; 1; 2; 3 | 2                                                                             
+1 + 2? | 2; 3; 4; 5 | 1                                                                             
+Cuál es el color del cielo?|Rojo;Blanco;Negro;Azul|3                                                
