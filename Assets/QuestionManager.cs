@@ -37,8 +37,7 @@ public class QuestionManager : MonoBehaviour {
 			p.panel.CargarPanel();
 		}
 	}
-
-<<<<<<< HEAD
+    
 	public Pregunta getPregunta(int index = -1){
         if(preguntasRestantes == null || preguntasRestantes.Count <= 0)
             preguntasRestantes = preguntas.ToList();
@@ -60,11 +59,6 @@ public class QuestionManager : MonoBehaviour {
 			Debug.Log(auxPreguntas.Count);
 			index = Random.Range(0,auxPreguntas.Count);
 		}*/
-=======
-	public Pregunta getPregunta(){
-		int index = random.Next(0,preguntasRestantes.Count);
-		Debug.Log(index+" | "+preguntasRestantes.Count);
->>>>>>> b34080cb7c309ce1a876dd0eb2df60e9d0bd80ff
 		//genera copia de respuesta a entregar, la borra del pool de preguntas restantes, y la retorna
 		Pregunta aux = preguntasRestantes[index];
 		preguntasRestantes.RemoveAt(index);

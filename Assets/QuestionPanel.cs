@@ -48,12 +48,12 @@ public class QuestionPanel : MonoBehaviour {
 		if(preguntaAlAzar)
 			pregunta = GameObject.FindObjectOfType<QuestionManager>().getPregunta();
 		else
-<<<<<<< HEAD
+//<<<<<<< HEAD
 			pregunta = GameObject.FindObjectOfType<QuestionManager>().getPregunta(dificultadAlAzar);
         print(gameObject.name + " " + pregunta.enunciado);
-=======
-			pregunta = GameObject.FindObjectOfType<QuestionManager>().getPreguntaId(idPregunta);
->>>>>>> b34080cb7c309ce1a876dd0eb2df60e9d0bd80ff
+//=======
+//			pregunta = GameObject.FindObjectOfType<QuestionManager>().getPreguntaId(idPregunta);
+//>>>>>>> b34080cb7c309ce1a876dd0eb2df60e9d0bd80ff
 		//trunca el arreglo de preguntas a 4 si hay mas
 		if(pregunta.alternativas.Length > 4){
 			string [] aux = new string[4];
