@@ -1,0 +1,139 @@
+fileFormatVersion: 2
+guid: f7475dc3520f7fa46b2ecc9c289ceb5a
+ModelImporter:
+  serializedVersion: 18
+  fileIDToRecycleName:
+    100000: CapriceCl
+    100002: //RootNode
+    100004: Car_Body
+    100006: LB_Wheel
+    100008: LF_Wheel
+    100010: RB_Wheel
+    100012: RF_Wheel
+    100014: Car_Hood
+    100016: Car_LefDoor
+    100018: Car_RightDoor
+    100020: Car_Trunk
+    100022: Car_FrontDoor_Left
+    100024: Car_FrontDoor_Right
+    100026: Car_RearDoor_Left
+    100028: Car_RearDoor_Right
+    400000: CapriceCl
+    400002: //RootNode
+    400004: Car_Body
+    400006: LB_Wheel
+    400008: LF_Wheel
+    400010: RB_Wheel
+    400012: RF_Wheel
+    400014: Car_Hood
+    400016: Car_LefDoor
+    400018: Car_RightDoor
+    400020: Car_Trunk
+    400022: Car_FrontDoor_Left
+    400024: Car_FrontDoor_Right
+    400026: Car_RearDoor_Left
+    400028: Car_RearDoor_Right
+    2300000: CapriceCl
+    2300002: //RootNode
+    2300004: Car_Body
+    2300006: LB_Wheel
+    2300008: LF_Wheel
+    2300010: RB_Wheel
+    2300012: RF_Wheel
+    2300014: Car_Hood
+    2300016: Car_LefDoor
+    2300018: Car_RightDoor
+    2300020: Car_Trunk
+    2300022: Car_FrontDoor_Left
+    2300024: Car_FrontDoor_Right
+    2300026: Car_RearDoor_Left
+    2300028: Car_RearDoor_Right
+    3300000: CapriceCl
+    3300002: //RootNode
+    3300004: Car_Body
+    3300006: LB_Wheel
+    3300008: LF_Wheel
+    3300010: RB_Wheel
+    3300012: RF_Wheel
+    3300014: Car_Hood
+    3300016: Car_LefDoor
+    3300018: Car_RightDoor
+    3300020: Car_Trunk
+    3300022: Car_FrontDoor_Left
+    3300024: Car_FrontDoor_Right
+    3300026: Car_RearDoor_Left
+    3300028: Car_RearDoor_Right
+    4300000: CapriceCl
+    4300002: Caprise
+    4300004: RF_Wheel
+    4300006: RB_Wheel
+    4300008: LF_Wheel
+    4300010: LB_Wheel
+    4300012: Car_Body
+    4300014: Car_Trunk
+    4300016: Car_Hood
+    4300018: Car_LefDoor
+    4300020: Car_RightDoor
+    4300022: Car_FrontDoor_Left
+    4300024: Car_RearDoor_Left
+    4300026: Car_FrontDoor_Right
+    4300028: Car_RearDoor_Right
+    9500000: //RootNode
+  materials:
+    importMaterials: 1
+    materialName: 1
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    optimizeGameObjects: 0
+    motionNodeName: 
+    animationCompression: 1
+    animationRotationError: .5
+    animationPositionError: .5
+    animationScaleError: .5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: .00999999978
+    meshCompression: 0
+    addColliders: 0
+    importBlendShapes: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 0
+  tangentSpace:
+    normalSmoothAngle: 60
+    splitTangentsAcrossUV: 1
+    normalImportMode: 0
+    tangentImportMode: 1
+  importAnimation: 0
+  copyAvatar: 0
+  humanDescription:
+    human: []
+    skeleton: []
+    armTwist: .5
+    foreArmTwist: .5
+    upperLegTwist: .5
+    legTwist: .5
+    armStretch: .0500000007
+    legStretch: .0500000007
+    feetSpacing: 0
+    rootMotionBoneName: 
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 0
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

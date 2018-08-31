@@ -1,0 +1,114 @@
+fileFormatVersion: 2
+guid: da8ab8ce053c2834098e2a135e008078
+ModelImporter:
+  serializedVersion: 16
+  fileIDToRecycleName:
+    100000: Lolvo_Base
+    100002: Lolvo_Door_Front_Left
+    100004: Lolvo_Door_Front_Right
+    100006: Lolvo_Door_Rear_Left
+    100008: Lolvo_Door_Rear_Right
+    100010: Lolvo_SteeringWheel
+    100012: //RootNode
+    100014: Lolvo_WheelFront_Left
+    100016: Lolvo_WheelFront_Right
+    100018: Lolvo_WheelRear_Left
+    100020: Lolvo_WheelRear_Right
+    100022: Wheels
+    400000: Lolvo_Base
+    400002: Lolvo_Door_Front_Left
+    400004: Lolvo_Door_Front_Right
+    400006: Lolvo_Door_Rear_Left
+    400008: Lolvo_Door_Rear_Right
+    400010: Lolvo_SteeringWheel
+    400012: //RootNode
+    400014: Lolvo_WheelFront_Left
+    400016: Lolvo_WheelFront_Right
+    400018: Lolvo_WheelRear_Left
+    400020: Lolvo_WheelRear_Right
+    400022: Wheels
+    2300000: Lolvo_Base
+    2300002: Lolvo_Door_Front_Left
+    2300004: Lolvo_Door_Front_Right
+    2300006: Lolvo_Door_Rear_Left
+    2300008: Lolvo_Door_Rear_Right
+    2300010: Lolvo_SteeringWheel
+    2300012: Lolvo_WheelFront_Left
+    2300014: Lolvo_WheelFront_Right
+    2300016: Lolvo_WheelRear_Left
+    2300018: Lolvo_WheelRear_Right
+    3300000: Lolvo_Base
+    3300002: Lolvo_Door_Front_Left
+    3300004: Lolvo_Door_Front_Right
+    3300006: Lolvo_Door_Rear_Left
+    3300008: Lolvo_Door_Rear_Right
+    3300010: Lolvo_SteeringWheel
+    3300012: Lolvo_WheelFront_Left
+    3300014: Lolvo_WheelFront_Right
+    3300016: Lolvo_WheelRear_Left
+    3300018: Lolvo_WheelRear_Right
+    4300000: Lolvo_Base
+    4300002: Lolvo_Door_Rear_Right
+    4300004: Lolvo_Door_Rear_Left
+    4300006: Lolvo_Door_Front_Right
+    4300008: Lolvo_Door_Front_Left
+    4300010: Lolvo_SteeringWheel
+    4300012: Lolvo_WheelFront_Right
+    4300014: Lolvo_WheelFront_Left
+    4300016: Lolvo_WheelRear_Left
+    4300018: Lolvo_WheelRear_Right
+    9500000: //RootNode
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 2
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    optimizeGameObjects: 0
+    motionNodeName: 
+    animationCompression: 1
+    animationRotationError: .5
+    animationPositionError: .5
+    animationScaleError: .5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: .00999999978
+    meshCompression: 0
+    addColliders: 0
+    importBlendShapes: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+  tangentSpace:
+    normalSmoothAngle: 60
+    splitTangentsAcrossUV: 1
+    normalImportMode: 0
+    tangentImportMode: 1
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    human: []
+    skeleton: []
+    armTwist: .5
+    foreArmTwist: .5
+    upperLegTwist: .5
+    legTwist: .5
+    armStretch: .0500000007
+    legStretch: .0500000007
+    feetSpacing: 0
+    rootMotionBoneName: 
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 0
+  additionalBone: 0
+  userData: 
