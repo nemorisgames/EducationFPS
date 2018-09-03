@@ -19,7 +19,7 @@ public class Teleporter : MonoBehaviour {
 			panelResumen = GameObject.FindObjectOfType<PanelResumen>();
 	}
 
-	public void CheckActive(){
+	public void CheckActive(){ //se llama cada vez que un enemigo muere
         if (guards.Count == 0)
         {
             active = true;
