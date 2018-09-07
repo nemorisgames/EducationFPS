@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using System.Runtime.Serialization;
+using UnityEngine.SceneManagement;
 
 public class PanelHistoria : MonoBehaviour {
 	UIPanel panel;
@@ -18,9 +19,12 @@ public class PanelHistoria : MonoBehaviour {
 
 	public Pantalla [] pantallas;
 	public int index;
+	public string loadLevel;
 	bool visible;
 	TweenAlpha imageTween;
 	TypewriterEffect typeWriter;
+	AsyncOperation loadMain;
+	AsyncOperation loadAdditive;
 
 	void Awake(){
 		panel = GetComponent<UIPanel>();
@@ -30,6 +34,7 @@ public class PanelHistoria : MonoBehaviour {
 		imageTween = imageSprite.GetComponent<TweenAlpha>();
 		typeWriter = textLabel.GetComponent<TypewriterEffect>();
 	}
+
 	void Start () {
 		panel.alpha = 1;
 		index = -1;
@@ -37,7 +42,17 @@ public class PanelHistoria : MonoBehaviour {
 		container.alpha = 0;
 		container.GetComponent<TweenAlpha>().PlayForward();
 		visible = true;
+		loadMain = SceneManager.LoadSceneAsync(loadLevel);
+		loadMain.allowSceneActivation = false;
+		if(loadLevel == "City"){
+			loadAdditive = SceneManager.LoadSceneAsync(loadLevel+"Models",LoadSceneMode.Additive);
+			loadAdditive.allowSceneActivation = false;
+		}
+		loadMain.priority = 0;
+		if(loadAdditive != null)
+			loadAdditive.priority = 1;
 	}
+
 
 	public void NextScreen(){
 		if(changingScreen)
@@ -50,8 +65,9 @@ public class PanelHistoria : MonoBehaviour {
 		if(index >= pantallas.Length){
 			if(index == pantallas.Length){
                 cargando.SetActive(true);
-                Debug.Log("end");
-           		Application.LoadLevel("Exterior");
+				loadMain.allowSceneActivation = true;
+				if(loadAdditive != null)
+					loadAdditive.allowSceneActivation = true;
 			}
 		}
 		else{
@@ -59,9 +75,20 @@ public class PanelHistoria : MonoBehaviour {
 		}
 	}
 
+	IEnumerator AdditiveLoad(){
+		while(loadMain.progress < 0.9 && loadAdditive.progress < 0.9){
+			yield return null;
+		}
+		loadMain.allowSceneActivation = true;
+		loadAdditive.allowSceneActivation = true;
+	}
+
 	void Update(){
 		if(visible && Input.GetKeyDown(KeyCode.Q))
 			NextScreen();
+		
+		if(loadMain != null && loadAdditive != null)
+			Debug.Log(loadMain.progress +" | "+ loadAdditive.progress);
 	}
 
 	public bool changingScreen = false;

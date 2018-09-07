@@ -1,8 +1,10 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class PanelResumen : MonoBehaviour {
+	UIPanel panel;
 	UILabel tiempoLabel, puntajeLabel, rCorrectasLabel, rEquivocadasLabel, totalLabel;
 	public float tiempo, total;
 	public int puntaje, rCorrectas, rEquivocadas;
@@ -13,6 +15,7 @@ public class PanelResumen : MonoBehaviour {
 	Quaternion initialRot;
 	GameObject player;
     public PlayMakerFSM fsm;
+	AsyncOperation loadNext;
 
     // Use this for initialization
     void Awake () {
@@ -21,10 +24,16 @@ public class PanelResumen : MonoBehaviour {
 		rCorrectasLabel = transform.Find("background/rCorrectas").GetComponent<UILabel>();
 		rEquivocadasLabel = transform.Find("background/rEquivocadas").GetComponent<UILabel>();
 		totalLabel = transform.Find("background/total").GetComponent<UILabel>();
-		GetComponent<UIPanel>().alpha = 0;
+		panel = GetComponent<UIPanel>();
+		panel.alpha = 0;
 		player = GameObject.FindGameObjectWithTag("Player");
 		initialPos = player.transform.position;
 		initialRot = player.transform.rotation;
+	}
+
+	void Start(){
+		loadNext = SceneManager.LoadSceneAsync("Story");
+		loadNext.allowSceneActivation = false;
 	}
 
 	void Update(){
@@ -34,6 +43,13 @@ public class PanelResumen : MonoBehaviour {
 		debug[1].text = FormatoTiempo((int)tiempo);
 		if(debugObject.activeInHierarchy && !showDebug || !debugObject.activeInHierarchy && showDebug)
 			debugObject.SetActive(!debugObject.activeInHierarchy);
+
+		if(panel.alpha != 0){
+			if(Input.GetKeyDown(KeyCode.Return))
+				restart();
+			if(Input.GetKeyDown(KeyCode.Escape))
+				exitGame();
+		}
 	}
 
 	public void EnemigoDestruido(){
@@ -74,7 +90,18 @@ public class PanelResumen : MonoBehaviour {
 
     public void restart()
     {
-        Application.LoadLevel("Exterior");
+		string name = SceneManager.GetActiveScene().name;
+        if(name == "City")
+			PlayerPrefs.SetInt("Escena",1);
+		else if(name == "Exterior 2")
+			PlayerPrefs.SetInt("Escena",2);
+		else if(name == "Tunnel")
+			PlayerPrefs.SetInt("Escena",3);
+		else if(name == "Interior")
+			PlayerPrefs.SetInt("Escena",4);
+		else
+			PlayerPrefs.SetInt("Escena",0);
+		loadNext.allowSceneActivation = true;
     }
 
 	public void ReturnPlayer(){
